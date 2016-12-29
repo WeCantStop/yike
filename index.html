@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>豆瓣一刻</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./public/less/main.css">
+    <script src="public/libs/angular.min.js"></script>
+    <script src="public/libs/angular-route.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js"></script>
+    <style>
+    .loading {
+        width: 25%;
+        margin: 4rem auto;
+    }
+    
+    .olderLoad {
+        width: 15%;
+        margin: 1rem auto;
+        margin-bottom: 2rem;
+    }
+    </style>
+</head>
+
+<body ng-app="yike">
+    <div class="viewport" ng-controller="yikeCtrl">
+        <!-- 侧边导航 -->
+        <div ng-class="{navs:true,collapse:collapsed}" ng-controller="sideNav">
+            <dl>
+                <dt class="login">
+                    <div class="avatar">
+                        <img src="./public/images/avatar.png" alt="">
+                    </div>
+                    <span>登录</span>
+                </dt>
+                <dd ng-class="{active:key==current}" ng-repeat="(key,nav) in navs">
+                    <a href="{{nav.link}}" class="{{nav.className}}" ng-click="change()">
+                        <span>{{nav.text}}</span>
+                    </a>
+                </dd>
+            </dl>
+            <div class="extra">
+                <a href="javascript:;" class="icon-image">夜晚</a>
+                <a href="javascript:;" class="icon-download">离线</a>
+            </div>
+        </div>
+        <div class="container">
+            <!-- 头部 -->
+            <div ng-class="{header:true,collapse:collapsed}">
+                <a href="javascript:;" class="menu icon-menu" ng-click="slide()"></a>
+                <h2>{{title}}</h2>
+                <a href="javascript:;" class="search icon-search"></a>
+            </div>
+            <!-- 主体 -->
+            <div ng-class="{body:true,collapse:collapsed}">
+                <div ng-view>
+                </div>
+                <div class="loading" ng-hide="loaded">
+                    <!-- 加载动画 -->
+                    <img src="public/images/myGif.gif" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="./public/libs/toggle.js"></script> -->
+</body>
+
+</html>
